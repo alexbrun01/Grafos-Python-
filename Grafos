@@ -1,0 +1,24 @@
+Dependências:
+
+import networkx as nx
+G = nx.Graph()
+
+vertices= ccm =['1', '2', '3', '4', '5', '6', '7','8','9']
+arestas= [('1','6'), ('5','3'), ('5','8'), ('5','4'),
+         ('7','6'),('7','9'), ('8','3'), ('1','9'), ('2','9')]
+
+G.add_nodes_from(vertices)
+G.add_edges_from(arestas)
+
+
+import matplotlib.pyplot as plt
+
+
+
+arestas_vermelhas = list(zip(ccm,ccm[1:]))
+cor_vertices = ['yellow' if not node in ccm else 'green' for node in G.nodes()]
+cor_arestas = ['black' if not edge in arestas_vermelhas else 'red' for edge in G.edges()]
+pos=nx.spring_layout(G)
+nx.draw_networkx(G, pos,node_color= cor_vertices,edge_color= cor_arestas, node_size=400)
+
+plt.show()
